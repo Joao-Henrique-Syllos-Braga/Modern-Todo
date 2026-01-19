@@ -1,0 +1,255 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+:root {
+  --font-family: "Inter", sans-serif;
+  --bg-white: #fbfbff;
+
+  --color-title: hsla(0, 0%, 0%, 0.5);
+  --color-subtitle: hsla(0, 0%, 0%, 0.75);
+  --color-text: hsla(0, 0%, 0%, 0.6);
+  --color-text-inverse: #ffffff;
+
+  --color-container-bg-1: #ffffff;
+  --color-container-bg-2: #eaeaf6;
+  --color-container-border: rgba(0, 0, 0, 0.2);
+
+  --color-primary: #8965ff;
+  --color-hover-primary: hsla(254, 100%, 50%, 0.631);
+
+  --border: 1px solid var(--color-container-border);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: var(--bg-white);
+}
+
+.todo {
+  padding-top: 50px;
+  display: grid;
+  justify-items: center;
+}
+
+.container {
+  gap: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bolder;
+  color: var(--color-title);
+  font-family: var(--font-family);
+}
+
+.create-container {
+  display: grid;
+  width: min(800px, 90%);
+  background-color: var(--color-container-bg-1);
+  padding: 2rem;
+  border-radius: 2rem;
+  border: var(--border);
+  gap: 1rem;
+}
+
+.create-container * {
+  padding: 1rem;
+  border: none;
+  border-radius: 1rem;
+  outline: none;
+}
+
+.create-container input {
+  background-color: var(--color-container-bg-2);
+  font-family: var(--font-family);
+}
+
+.create-container input::placeholder {
+  color: var(--color-text);
+  font-size: 16px;
+}
+
+.create-container button {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-weight: 700;
+  font-family: var(--font-family);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  font-size: 16px;
+}
+
+.create-container button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--color-hover-primary);
+  z-index: -1;
+  transition: 0.2s;
+}
+
+.create-container button:hover::before {
+  width: 100%;
+}
+
+.tasks-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tasks-container {
+  list-style: none;
+  display: grid;
+  width: min(800px, 90%);
+  border-radius: 2rem;
+  background-color: var(--color-container-bg-1);
+  border: var(--border);
+  gap: 1rem;
+  padding: 2rem;
+}
+.task {
+  display: flex;
+  gap: 1rem;
+}
+
+.task-container {
+  font-size: 16px;
+  width: 100%;
+  padding: 1rem;
+  text-align: left;
+  font-family: var(--font-family);
+  border: var(--border);
+  border-radius: 1rem;
+  background-color: var(--color-container-bg-2);
+  color: var(--color-subtitle);
+}
+
+.task-container:hover {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.task-delete-button {
+  background-color: hsla(131, 100%, 33%, 0.2);
+  width: 54px;
+  border-radius: 1rem;
+  padding: 0;
+  color: hsl(131, 100%, 33%);
+  border: 1px solid hsl(131, 100%, 33%);
+  transition: 0.2s;
+}
+
+
+.task-delete-button:hover {
+  background-color: hsl(131, 100%, 33%);
+  color: #CCEED2;
+}
+.task-desc-on {
+  display: flex;
+  flex-direction: column;
+  width: min(800px, 90%);
+  background-color: var(--color-container-bg-1);
+  padding: 2rem;
+  border-radius: 2rem;
+  border: var(--border);
+  gap: 1rem;
+  position: fixed;
+  top: 240px;
+  z-index: 11;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  backdrop-filter: blur(4px);
+}
+
+.task-desc-off {
+  display: none;
+}
+
+
+.div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.div h1 {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--color-subtitle);
+}
+
+.div button {
+  flex-grow: 0;
+  height: 46px;
+  width: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--border);
+  background-color: var(--color-container-bg-2);
+  border-radius: 50%;
+  color: var(--color-container-border);
+  transition: 0.2s;
+}
+
+.div button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.task-text-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.text {
+  width: 100%;
+}
+
+.task-text-container p {
+  color: var(--color-text);
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.task-status-container {
+  background-color: hsla(0, 100%, 59%, 0.2);
+  color: #FF2C2C;
+  width: min-content;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}

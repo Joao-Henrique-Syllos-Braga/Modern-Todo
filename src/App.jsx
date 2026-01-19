@@ -1,5 +1,8 @@
 import { useState } from "react";
 import "./App.css";
+
+import AddTask from "./components/AddTask";
+import "./App.css";
 import Tasks from "./components/Tasks";
 
 function App() {
@@ -23,10 +26,24 @@ function App() {
     setTasks(updatedTasks);
   }
 
+  function onTaskAddClick(title, description) {
+    const newTask = {
+      id: tasks.length + 1,
+      title: title,
+      description: description,
+      completed: false,
+    };
+    const updatedTasks = [...tasks, newTask];
+    setTasks(updatedTasks);
+  }
+
   return (
-    <div>
+    <div className="todo">
       <h1 className="title">TODO LIST</h1>
-      <Tasks tasks={tasks} onTaskDeleteClick={onTaskDeleteClick} />
+      <div className="container">
+        <AddTask tasks={tasks} onTaskAddClick={onTaskAddClick} />
+        <Tasks tasks={tasks} onTaskDeleteClick={onTaskDeleteClick} />
+      </div>
     </div>
   );
 }

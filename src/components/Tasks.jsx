@@ -1,19 +1,44 @@
-import { Trash } from "lucide-react";
+import { Check } from "lucide-react";
+import TaskDesc from "./TaskDesc";
+import { useState } from "react";
 
 function Tasks({ tasks, onTaskDeleteClick }) {
+  const [isDesc, setIsDesc] = useState(false);
+  const [task, setTask] = useState(null);
+
   return (
-    <ul className="tasks-container">
-      {tasks.map((task) => (
-        <li key={task.id}>
-          <button className="task-container">
-            <h2 className="task-title">{task.title}</h2>
-          </button>
-          <button className="task-delete-button" onClick={() => onTaskDeleteClick(task.id)}>
-            <Trash />
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div className="tasks-wrapper">
+      <ul className="tasks-container">
+        {tasks.length === 0 ? (
+          <p>No tasks available. Please add a task.</p>
+        ) : null}
+        {tasks.map((task) => (
+          <li key={task.id}>
+            <div className="task">
+              <button
+                className="task-container"
+                onClick={() => {
+                  setIsDesc(true);
+                  setTask(task);
+                }}
+              >
+                <span className="task-title">{task.title}</span>
+              </button>
+              <button
+                className="task-delete-button"
+                onClick={() => onTaskDeleteClick(task.id)}
+              >
+                <Check />
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
+      {isDesc && <div className="overlay" />}
+      {isDesc && (
+        <TaskDesc task={task} isDesc={isDesc} setIsDesc={setIsDesc} />
+      )}{" "}
+    </div>
   );
 }
 
