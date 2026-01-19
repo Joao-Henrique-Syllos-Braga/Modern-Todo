@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 import AddTask from "./components/AddTask";
@@ -6,20 +6,13 @@ import "./App.css";
 import Tasks from "./components/Tasks";
 
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Estudar React",
-      description: "Ler a documentação oficial do React e fazer tutoriais.",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Fazer compras",
-      description: "Comprar mantimentos para a semana.",
-      completed: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("Tasks")) || [],
+  );
+
+  useEffect(() => {
+    localStorage.setItem("Tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function onTaskDeleteClick(taskId) {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);

@@ -12,27 +12,30 @@ function Tasks({ tasks, onTaskDeleteClick }) {
         {tasks.length === 0 ? (
           <p>No tasks available. Please add a task.</p>
         ) : null}
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <div className="task">
-              <button
-                className="task-container"
-                onClick={() => {
-                  setIsDesc(true);
-                  setTask(task);
-                }}
-              >
-                <span className="task-title">{task.title}</span>
-              </button>
-              <button
-                className="task-delete-button"
-                onClick={() => onTaskDeleteClick(task.id)}
-              >
-                <Check />
-              </button>
-            </div>
-          </li>
-        ))}
+        {tasks.map((task) => {
+          if (task.completed) return null;
+          return (
+            <li key={task.id}>
+              <div className="task">
+                <button
+                  className="task-container"
+                  onClick={() => {
+                    setIsDesc(true);
+                    setTask(task);
+                  }}
+                >
+                  <span className="task-title">{task.title}</span>
+                </button>
+                <button
+                  className="task-delete-button"
+                  onClick={() => onTaskDeleteClick(task.id)}
+                >
+                  <Check />
+                </button>
+              </div>
+            </li>
+          );
+        })}
       </ul>
       {isDesc && <div className="overlay" />}
       {isDesc && (

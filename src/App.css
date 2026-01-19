@@ -147,12 +147,6 @@ body {
   color: var(--color-subtitle);
 }
 
-.task-container:hover {
-  background-color: var(--color-primary);
-  color: var(--color-text-inverse);
-  cursor: pointer;
-  transition: 0.2s;
-}
 
 .task-delete-button {
   background-color: hsla(131, 100%, 33%, 0.2);
